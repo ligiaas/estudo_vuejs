@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		.red {
+			color: #990000;
+		    font-family: courier;
+		    font-size: 160%;
+		    font-weight: 600;
+		}
+		.green {
+			color: #36b580;
+		    font-family: verdana;
+		    font-size: 200%;
+		    font-weight: 500;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="app">
+				<h1>{{titulo}}</h1>
+				<img v-bind:src="imagem" v-bind:alt="alt" style="display: block;margin: auto;">
+			</div>
+			<div class="col-md-12" id="img">
+				<img v-show="show" :src="'https://www.valuecoders.com/blog/wp-content/uploads/2016/11/Vue.js-cover.png'" :alt="'Vuejs is awesome!'" style="display: block;margin: auto;">
+				<p :class="classHtml">Quando der v-bind em uma classe, sempre declarar a variável dentro do data no javascript.</p>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				titulo: "Aula 06 - Vuejs do jeito ninja.",
+				imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgfUAHtA4Uoqz6hYv_bJ-YrMqR6rpWPSP9hypQnT21a5Q8RSODoA",
+				alt: "Vuejs is awesome!"
+			}
+		});
+
+		var img = new Vue({
+			el: '#img',
+			data: {
+				show: false,
+				classHtml: "green"
+			}
+		});
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
