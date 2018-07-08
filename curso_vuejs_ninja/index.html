@@ -10,12 +10,49 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<h1>Hello Word!</h1>
+			<div class="col-md-12" id="app">
+				<h1>{{titulo}}</h1>
+				<p v-if="texto">A diferença entre v-if e v-show:<br/><strong>V-if</strong> o elemento some do documento html, ele não é exibido no inspect. É mais usado para checar se veio alguma variável do php ou backend, ela só será exibida se veio alguma variável.<br/><strong>V-show</strong> ele continua existindo porém com display none. Mais usado pra ser exibido quando houver alguma interação do usuário, se ele clicou em algo.</p>
+				<p v-else>Não existe texto!</p>
+			</div>
+		</div>
+		<div class="row">
+			<div id="user">
+				<div class="col-md-12" v-if="usuario.id == 1">
+					<p>ID: {{usuario.id}}</p>
+					<p>NOME: {{usuario.nome}}</p>
+					<p>APELIDO: {{usuario.apelido}}</p>
+					<p>PROFISSÃO: {{usuario.profissao}}</p>
+					<p>EMPRESA: {{usuario.empresa}}</p>
+				</div>
+				<div class="col-md-12" v-else>
+					<p>Nenhum usuário com o ID: 1.</p>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				texto: true,
+				titulo: "Aula 01 - Vuejs do jeito ninja."
+			}
+		});
+		var user = new Vue({
+			el: '#user',
+			data: {
+				usuario: {
+					id: 1,
+					nome: "Dartagnan",
+					apelido: "Dart",
+					profissao: "Demogorgon",
+					empresa: "Stranger Things"
+				}
+			}
+		})
+	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
