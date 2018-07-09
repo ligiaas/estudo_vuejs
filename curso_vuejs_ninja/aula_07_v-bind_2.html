@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="app">
+				<h1>{{titulo}}</h1>
+				<form action="#" method="POST">
+					<div class="form-group">
+						<label for="nome">Nome</label>
+						<input type="text" class="form-control" id="nome" v-model="nome">
+					</div>
+					<div class="form-group">
+						<label for="telefone">Telefone</label>
+						<input type="text" class="form-control" id="telefone" v-model="telefone">
+					</div>
+					<p>Deseja receber nossas novidades?</p>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="optionsRadios" id="optsim" value="Sim" v-model="novidades">
+					    Sim
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="optionsRadios" id="optnao" value="Não" v-model="novidades">
+					    Não
+					  </label>
+					</div>
+					<p>Interesses</p>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" value="Futebol" id="optfut" v-model="interesses">
+					    Futebol
+					  </label>
+					</div>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" value="Fórmula 1" id="optform1" v-model="interesses">
+					    Fórmula 1
+					  </label>
+					</div>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" value="Corrida" id="optcor" v-model="interesses">
+					    Corrida
+					  </label>
+					</div>
+					<p><strong>Atenção</strong>, é possível dar v-bind na classe do css e também no inline-style declarando o css na variável do elemento vuejs, pode ser tbm como objeto e array de objeto.</p>
+					<div class="form-group">
+						<label for="">Como nos conheceu?</label>
+						<select name="" id="" class="form-control"v-model="conheceu">
+							<option value="" disabled></option>
+							<option value="Google">Google</option>
+							<option value="TV">TV</option>
+							<option value="Revist">Revista</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn" :class="btnClassLimpar" v-bind:style="btnStyleLimpar">Limpar</button>
+							<button class="btn" :class="btnClassEnviar" v-bind:style="btnStyleEnviar">Enviar</button>
+						</div>
+					</div>
+				</form>
+				<div v-show="mostrar">
+					<p style="text-decoration: capitalize;">nome: {{nome}}</p>
+					<p style="text-decoration: capitalize;">telefone: {{telefone}}</p>
+					<p style="text-decoration: capitalize;">novidades: {{novidades}}</p>
+					<p style="text-decoration: capitalize;">interesses: {{interesses}}</p>
+					<p style="text-decoration: capitalize;">como nos conheceu? {{conheceu}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				titulo: "Aula 07 - Vuejs do jeito ninja.",
+				nome: "",
+				telefone: "",
+				novidades: "",
+				interesses: [],
+				conheceu: "",
+				mostrar: false,
+				btnClassLimpar: {
+					'btn-danger': true,
+					'btn-sm': false
+				},
+				btnClassEnviar: [
+					'btn-primary',
+					{'btn-lg': false}
+				],
+				btnStyleLimpar: {
+					'font-size': '20px'
+				},
+				btnStyleEnviar: {
+					'font-size': '20px',
+					'text-transform': 'uppercase'
+				}
+			}
+		});
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
