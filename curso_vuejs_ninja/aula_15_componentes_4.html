@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<div class="container">
+			<div style="margin-top: 40px;">
+				<input-form></input-form>
+				<br/>
+				<my-list></my-list>
+			</div>
+		</div>
+	</div>
+	
+	<template id="form">
+		<div class="card" style="padding: 10px;">
+			<div class="card-block">
+				<div class="form-group">
+					<label for="">Título</label>
+					<input v-model="title" type="text" class="form-control">
+				</div>
+				<button @click.stop.prevent="submit()" class="btn btn-primary">ENVIAR</button>
+			</div>
+		</div>
+	</template>
+
+	<template id="list">
+		<ul class="list-group">
+			<li v-for="item in list" class="list-group-item">{{ item.title }}</li>
+		</ul>
+	</template>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+
+		Vue.component("input-form", {
+			template: '#form',
+			data() {
+				return {
+					title: '',
+				}
+			},
+			methods: {
+				submit() {
+					this.$eventHub.$emit('submit', this.title);
+				}
+			}
+		});
+
+		Vue.component("my-list", {
+			template: '#list',
+			created() {
+				var vm = this;
+				this.$eventHub.$on('submit', function(title) {
+					if(title) {
+						vm.list.push({title: title});
+					}
+				});
+			},
+			data() {
+				return {
+					list: [
+						{title: "Ir a feira"},
+					]
+				}
+			}
+		});
+
+		// var eventBus = new Vue();
+		Vue.prototype.$eventHub = new Vue();
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				titulo: "Aula 15 - Vuejs do jeito Ninja!"
+			}
+		});
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<div class="container" style="margin-top: 40px;">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+					<card>
+						<h4 slot="title" class="card-title">Card Title</h4>
+						<template slot="text">
+							<p class="card-text">Some quick example text to build on the card title and...</p>
+							<p class="card-text">Some quick example text to build on the card title and...</p>
+						</template>
+						<a slot="action" href="#" class="btn btn-primary">Go somewhere</a>
+					</card>
+					<br/>
+					<card>
+						<h4 slot="title" class="card-title">Card Title</h4>
+						<template slot="text">
+							<p class="card-text">Some quick example text to build on the card title and...</p>
+						</template>
+						<a slot="action" href="#" class="btn btn-primary">Leia Mais</a>
+					</card>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<template id="card">
+		<div class="card">
+			<img class="card-img-top" src="http://via.placeholder.com/350x150">
+			<div class="card-body">
+				<slot name="title"></slot>
+				<slot name="text"></slot>
+				<slot name="action"></slot>
+			</div>
+		</div>
+	</template>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+
+		Vue.component("card", {
+			template: '#card',
+			data() {
+				return {
+					title: '',
+				}
+			},
+			methods: {
+				submit() {
+					
+				}
+			}
+		});
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				titulo: "Aula 16 - Vuejs do jeito Ninja!"
+			}
+		});
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

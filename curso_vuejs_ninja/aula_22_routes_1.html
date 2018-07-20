@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<style>
+	.fade-enter-active {
+	  transition: opacity .10s;
+	}
+	.fade-leave-active {
+		transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	  opacity: 0;
+	}
+</style>
+<body>
+	<div id="app">
+		<div class="container" style="margin-top: 40px;">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+					<h1>{{titulo}}</h1>
+					<ul>
+						<li><router-link to="/transformers">Transformers</router-link></li>
+						<li><router-link to="/game-of-thrones">Game of Thrones</router-link></li>
+					</ul>
+					<router-view></router-view>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<template id="transformers">
+		<div>
+			<h2>Transformers</h2>
+			<ul>
+				<li v-for="(item, index) in users" :key="item.name">{{item.name}} <a @click.stop.prevent="remove()" href="#">X</a></li>
+			</ul>
+		</div>
+	</template>
+
+	<template id="gameOfThrones">
+		<div>
+			<h2>Game Of Thrones</h2>
+			<ul>
+				<li v-for="(item, index) in users" :key="item.name">{{item.name}} <a @click.stop.prevent="remove()" href="#">X</a></li>
+			</ul>
+		</div>
+	</template>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script>
+		var mixin = {
+			methods: {
+				remove(index) {
+					this.users.splice(index, 1);
+					console.log(this);
+				},
+			}
+		}
+		var Transformers = Vue.component('transformers', {
+			template: "#transformers",
+			mixins: [mixin],
+			data() {
+				return {
+					users: [
+						{name: 'Optimus Prime'},
+						{name: 'Bumbelebee'},
+						{name: 'Megatron'}
+					]
+				}
+			}
+		});
+		var GameOfThrones = Vue.component('game-of-thrones', {
+			template: "#gameOfThrones",
+			mixins: [mixin],
+			data() {
+				return {
+					users: [
+						{name: 'Daenerys'},
+						{name: 'Jon Snow'},
+						{name: 'Tyron'}
+					]
+				}
+			}
+		});
+		var router = new VueRouter({
+			routes: [
+				{path: '/transformers', component: Transformers},
+				{path: '/game-of-thrones', component: GameOfThrones}
+			]
+		});
+		var app = new Vue({
+			el: '#app',
+			router, 
+			mixins: [mixin],
+			// mounted() {
+			// 	console.log(this.$refs.users);
+			// },
+			
+			data: {
+				titulo: "Aula 22 - Vuejs do jeito Ninja!",
+				users: [
+					{name: 'Emma'},
+					{name: 'Sophia'},
+					{name: 'Isabela'}
+				],
+			}
+		});
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Curso Vuejs Ninja YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app">
+		<div class="container" style="margin-top: 40px;">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+					<h1>{{titulo}}</h1>
+					<component :is="movie"></component>
+					<br/>
+					<ul ref="users">
+						<li v-for="(item, index) in users" :key="item.name">{{item.name}} <a @click.stop.prevent="remove()" href="#">X</a></li>
+						<!--
+						:key => é um identificador, serve pra facilitar a vida do vuejs, ele vai direto ao ponto e não precisa gerar um log de identificação. Com ele o vue vai direto no elemento, a app fica mais rápida.
+						ref="" => serve para referenciar o elemento, assim como vc chama o elemento via classe ou id.
+						slot => monta um teco do template no body ou vice-versa
+						is => transforma um componente anônimo em um componente específico
+						-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<template id="transformers">
+		<h2>Transformers</h2>
+		<ul ref="users">
+			<li v-for="(item, index) in users" :key="item.name">{{transformers.name}} <a @click.stop.prevent="remove()" href="#">X</a></li>
+		</ul>
+	</template>
+
+	<template id="gameOfThrones">
+		<h2>Game Of Thrones</h2>
+		<ul ref="users">
+			<li v-for="(item, index) in users" :key="item.name">{{gameOfThrones.name}} <a @click.stop.prevent="remove()" href="#">X</a></li>
+		</ul>
+	</template>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		Vue.component('transformers', {
+			template: "#transformers",
+			data() {
+				return {
+					transformers: [
+						{name: 'Optimus Prime'},
+						{name: 'Bumbelebee'},
+						{name: 'Megatron'}
+					]
+				}
+			}
+		});
+		Vue.component('gameOfThrones', {
+			template: "#gameOfThrones",
+			data() {
+				return {
+					gameOfThrones: [
+						{name: 'Daenerys'},
+						{name: 'Jon Snow'},
+						{name: 'Tyron'}
+					]
+				}
+			}
+		});
+		var app = new Vue({
+			el: '#app',
+			mounted() {
+				console.log(this.$refs.users);
+			},
+			
+			data: {
+				titulo: "Aula 20 - Vuejs do jeito Ninja!",
+				users: [
+					{name: 'Emma'},
+					{name: 'Sophia'},
+					{name: 'Isabela'}
+				],
+				movie: 'transformers',
+			},
+			methods: {
+				remove(index) {
+					this.users.splice(index, 1);
+				}
+			}
+		});
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
